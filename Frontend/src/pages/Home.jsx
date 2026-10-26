@@ -1,9 +1,9 @@
 import Hero from "../sections/Hero";
 
-const Home = () => {
+const Home = ({ active }) => {
   return (
     <>
-      <Hero />
+      <Hero active={active} />
     </>
   );
 };

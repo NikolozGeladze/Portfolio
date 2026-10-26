@@ -11,12 +11,13 @@ const START_DELAY = 500;
 
 const easeOut = [0.22, 1, 0.36, 1];
 
-const Hero = () => {
+const Hero = ({ active = true }) => {
     const reduce = useReducedMotion();
     const [count, setCount] = useState(0);
-    const typed = reduce || count >= NAME.length;
+    const typed = active && (reduce || count >= NAME.length);
 
     useEffect(() => {
+        if (!active) return;
         if (reduce) return;
 
         let interval;
@@ -38,11 +39,11 @@ const Hero = () => {
             clearTimeout(start);
             clearInterval(interval);
         };
-    }, [reduce]);
+    }, [active, reduce]);
 
     const rise = (delay = 0) => ({
         initial: reduce ? false : { opacity: 0, y: 14, },
-        animate: typed ? { opacity: 1, y: 0, } : { opacity: 0, y: 14, },
+        animate: active && typed ? { opacity: 1, y: 0, } : { opacity: 0, y: 14, },
         transition: { duration: 0.7, ease: easeOut, delay },
     });
 
@@ -56,7 +57,7 @@ const Hero = () => {
                         <motion.p
                             className="w-fit text-gray-400 cursor-default transition-all duration-300 hover:text-white hover:translate-x-1"
                             initial={reduce ? false : { opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                             transition={{ duration: 0.6, ease: easeOut, }}>
                             Hello, I am
                         </motion.p>
@@ -109,7 +110,7 @@ const Hero = () => {
                 <motion.div>
                     <motion.div
                         initial={reduce ? false : { opacity: 0, filter: 'blur(14px)' }}
-                        animate={{ opacity: 1, filter: 'blur(0px)' }}
+                        animate={active ? { opacity: 1, filter: 'blur(0px)' } : { opacity: 0, filter: 'blur(14px)' }}
                         transition={{ duration: 1.4, ease: easeOut, delay: 0.2 }}
                         className="overflow-hidden mask-x-from-70% mask-x-to-100% mask-y-from-70% mask-y-to-100%"
                     >
