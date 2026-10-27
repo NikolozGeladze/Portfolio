@@ -4,6 +4,7 @@ import {
     useReducedMotion,
 } from 'framer-motion';
 import MyImage from '../assets/my-image.jpeg';
+import SocialLinks from '../components/SocialLinks';
 
 const NAME = 'Nikoloz Geladze';
 const TYPE_SPEED = 70;
@@ -49,7 +50,7 @@ const Hero = ({ active = true }) => {
 
     return (
         <>
-            <div className="pt-30 px-50 flex">
+            <div className="pt-30 px-50 flex gap-10">
                 <div
                     className="w-full flex flex-col justify-center items-start gap-5"
                 >
@@ -87,9 +88,9 @@ const Hero = ({ active = true }) => {
                         </motion.h2>
                     </div>
 
-                    <motion.p className="text-gray-400 max-w-xl cursor-default transition-all duration-300 hover:text-gray-200 hover:translate-x-1" {...rise(0.15)}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae sunt minima tempora ad
-                        deserunt! Cupiditate ut alias maxime ipsam, aperiam aut.
+                    <motion.p className="text-gray-400 max-w-xl text-justify cursor-default transition-all duration-300 hover:text-gray-200 hover:translate-x-1" {...rise(0.15)}>
+                        I started programming in 2023 and have been focused on turning ideas into modern, functional web applications ever since.
+                        I work across both frontend and backend development using React, JavaScript, Tailwind CSS, Node.js, and Git. I enjoy solving technical problems, refining user experiences, and learning new technologies through every project I build.
                     </motion.p>
 
                     <motion.div className="flex gap-3" {...rise(0.3)}>
@@ -104,6 +105,12 @@ const Hero = ({ active = true }) => {
                                 Get in touch
                             </span>
                         </a>
+                    </motion.div>
+                    <motion.div className="flex gap-3" {...rise(0.3)}>
+                        <SocialLinks link="https://github.com/NikolozGeladze" name="GitHub" />
+                        <SocialLinks link="https://www.facebook.com/nikolozgeladze8" name="Facebook" />
+                        <SocialLinks link="https://discord.com/users/1127948398834749531" name="Discord" />
+                        <SocialLinks link="https://www.instagram.com/nikolozmokheve/" name="Instagram" />
                     </motion.div>
                 </div>
 
